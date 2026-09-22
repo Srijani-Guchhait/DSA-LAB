@@ -1,34 +1,35 @@
 #include <stdio.h>
 
-#define MAX_SIZE 100
-
-int main(void)
-{
-    int a[MAX_SIZE], target;
-    size_t n;
-    int *p = a;
-    int found = 0;
-
+int main() {
+    int n, target, i;
+    int found = -1;
+    
     printf("Enter array size: ");
-    if (scanf("%zu", &n) != 1 || n == 0 || n > MAX_SIZE)
-        return 1;
-
-    printf("Enter %zu elements: ", n);
-    for (size_t i = 0; i < n; ++i)
-        if (scanf("%d", p + i) != 1) return 1;
-
+    scanf("%d", &n);
+    
+    int arr[n];
+    int *ptr = arr;
+    
+    printf("Enter %d elements: ", n);
+    for (i = 0; i < n; i++) {
+        scanf("%d", ptr + i);
+    }
+    
     printf("Enter element to search: ");
-    if (scanf("%d", &target) != 1) return 1;
-
-    for (size_t i = 0; i < n; ++i) {
-        if (*(p + i) == target) {
-            printf("Element %d found at index %zu\n", target, i);
-            found = 1;
+    scanf("%d", &target);
+    
+    for (i = 0; i < n; i++) {
+        if (*(ptr + i) == target) {
+            found = i;
+            break;
         }
     }
-
-    if (!found)
-        printf("Element %d not found.\n", target);
-
+    
+    if (found != -1) {
+        printf("Element %d found at index %d\n", target, found);
+    } else {
+        printf("Element %d not found \n", target);
+    }
+    
     return 0;
 }
