@@ -2,55 +2,63 @@
 
 #define SIZE 5
 
-static int queue[SIZE];
-static int front = -1;
-static int rear = -1;
+int item[SIZE];
+int front = -1;
+int rear = -1;
 
-static void enqueue(int value)
+void enqueue(int value)
 {
     if (rear == SIZE - 1) {
-        printf("Queue is full\n");
-        return;
+        printf("Full\n");
+    } else {
+        if (front == -1) {
+            front = 0;
+        }
+        rear++;
+        item[rear] = value;
+        printf("Inserted = %d\n", value);
     }
-    if (front == -1) front = 0;
-    queue[++rear] = value;
-    printf("Inserted = %d\n", value);
 }
 
-static void dequeue(void)
+void deque(void)
 {
     if (front == -1) {
-        printf("Queue is empty\n");
-        return;
-    }
+        printf("Empty\n");
+    } else {
+        printf("Deleted = %d\n", item[front]);
+        front++;
 
-    printf("Deleted = %d\n", queue[front++]);
-    if (front > rear) front = rear = -1;
+        if (front > rear) {
+            front = rear = -1;
+        }
+    }
 }
 
-static void display(void)
+void display(void)
 {
-    if (front == -1) {
-        printf("Queue is empty\n");
-        return;
+    if (rear == -1) {
+        printf("Empty\n");
+    } else {
+        printf("The Que = ");
+        for (int i = front; i <= rear; i++) {
+            printf("%d ", item[i]);
+        }
+        printf("\n");
     }
-
-    printf("Queue: ");
-    for (int i = front; i <= rear; ++i)
-        printf("%d%s", queue[i], i == rear ? "\n" : " ");
 }
 
 int main(void)
 {
-    dequeue();
+    deque();
     enqueue(10);
     enqueue(20);
     enqueue(30);
     enqueue(60);
     display();
 
-    dequeue();
+    deque();
     display();
 
     return 0;
 }
+
