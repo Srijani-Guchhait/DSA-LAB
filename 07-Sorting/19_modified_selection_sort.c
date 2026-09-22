@@ -1,35 +1,44 @@
 #include <stdio.h>
 
-static void modified_selection_sort(int a[], int n)
-{
-    for (int i = 0, j = n - 1; i < j; ++i, --j) {
-        int min_index = i;
-        int max_index = i;
-
-        for (int k = i + 1; k <= j; ++k) {
-            if (a[k] < a[min_index]) min_index = k;
-            if (a[k] > a[max_index]) max_index = k;
+void SelectionSort(int array[], int size) {
+    for (int step = 0; step < size - 1; step++) {
+        int min_idx = step;
+        for (int i = step + 1; i < size; i++) {
+            if (array[i] < array[min_idx]) {
+                min_idx = i;
+            }
         }
-
-        int temp = a[i];
-        a[i] = a[min_index];
-        a[min_index] = temp;
-
-        if (max_index == i) max_index = min_index;
-
-        temp = a[j];
-        a[j] = a[max_index];
-        a[max_index] = temp;
+        if (min_idx != step) {
+            int temp = array[min_idx];
+            array[min_idx] = array[step];
+            array[step] = temp;
+        }
+        
+        printf("Iteration %d: ", step + 1);
+        for (int i = 0; i < size; i++) {
+            printf("%d ", array[i]);
+        }
+        printf("\n");
     }
 }
 
-int main(void)
-{
-    int a[] = {64, 34, 25, 12, 22, 11, 90, 5};
-    int n = (int)(sizeof(a) / sizeof(a[0]));
-
-    modified_selection_sort(a, n);
-    printf("Sorted array: ");
-    for (int i = 0; i < n; ++i) printf("%d%s", a[i], i + 1 == n ? "\n" : " ");
+int main() {
+    int size;
+    printf("Enter size of array: ");
+    scanf("%d", &size);
+    
+    int data[size];
+    printf("Enter %d elements:\n", size);
+    for (int i = 0; i < size; i++) {
+        scanf("%d", &data[i]);
+    }
+    
+    SelectionSort(data, size);
+    
+    printf("Sorted Array\n");
+    for (int i = 0; i < size; i++) {
+        printf("%d ", data[i]);
+    }
+    printf("\n");
     return 0;
 }
