@@ -1,25 +1,29 @@
 #include <stdio.h>
 
-static void insertion_sort(int a[], int n)
-{
-    for (int i = 1; i < n; ++i) {
-        int key = a[i];
-        int j = i - 1;
-        while (j >= 0 && a[j] > key) {
-            a[j + 1] = a[j];
-            --j;
+void SelectionSort(int array[], int size) {
+    for (int step = 0; step < size - 1; step++) {
+        int min_idx = step;
+        for (int i = step + 1; i < size; i++) {
+            if (array[i] < array[min_idx]) {
+                min_idx = i;
+            }
         }
-        a[j + 1] = key;
+        int temp = array[min_idx];
+        array[min_idx] = array[step];
+        array[step] = temp;
     }
 }
 
-int main(void)
-{
-    int a[] = {64, 34, 25, 12, 22, 11, 90};
-    int n = (int)(sizeof(a) / sizeof(a[0]));
-
-    insertion_sort(a, n);
-    printf("Sorted array: ");
-    for (int i = 0; i < n; ++i) printf("%d%s", a[i], i + 1 == n ? "\n" : " ");
+int main() {
+    int data[] = {6, 4, 7, 8, 1, 9, 5};
+    int size = sizeof(data) / sizeof(data[0]);
+    
+    SelectionSort(data, size);
+    
+    printf("Sorted Array\n");
+    for (int i = 0; i < size; ++i) {
+        printf("%d ", data[i]);
+    }
+    printf("\n");
     return 0;
 }
