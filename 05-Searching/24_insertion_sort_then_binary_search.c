@@ -1,53 +1,55 @@
 #include <stdio.h>
 
-static void insertion_sort(int a[], int n)
-{
-    for (int i = 1; i < n; ++i) {
-        int key = a[i];
+void insertionSort(int arr[], int n) {
+    for (int i = 1; i < n; i++) {
+        int key = arr[i];
         int j = i - 1;
-        while (j >= 0 && a[j] > key) {
-            a[j + 1] = a[j];
-            --j;
+        while (j >= 0 && arr[j] > key) {
+            arr[j + 1] = arr[j];
+            j = j - 1;
         }
-        a[j + 1] = key;
+        arr[j + 1] = key;
     }
 }
 
-static int binary_search(const int a[], int n, int key)
-{
-    int low = 0, high = n - 1;
-
-    while (low <= high) {
-        int mid = low + (high - low) / 2;
-        if (a[mid] == key) return mid;
-        if (key < a[mid]) high = mid - 1;
-        else low = mid + 1;
+int binarySearch(int arr[], int left, int right, int target) {
+    while (left <= right) {
+        int mid = left + (right - left) / 2;
+        if (arr[mid] == target)
+            return mid;
+        if (arr[mid] < target)
+            left = mid + 1;
+        else
+            right = mid - 1;
     }
     return -1;
 }
 
-int main(void)
-{
-    int a[100], n, key;
+int main() {
+    int arr[] = {64, 34, 25, 12, 22, 11, 90};
+    int n = sizeof(arr) / sizeof(arr[0]);
+    int target = 25;
 
-    printf("Enter number of elements: ");
-    if (scanf("%d", &n) != 1 || n <= 0 || n > 100) return 1;
+    printf("Original unsorted array: ");
+    for (int i = 0; i < n; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
 
-    printf("Enter elements: ");
-    for (int i = 0; i < n; ++i)
-        if (scanf("%d", &a[i]) != 1) return 1;
+    insertionSort(arr, n);
 
-    printf("Enter element to search: ");
-    if (scanf("%d", &key) != 1) return 1;
+    printf("Array after insertion Sort: ");
+    for (int i = 0; i < n; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
 
-    insertion_sort(a, n);
-
-    printf("Sorted array: ");
-    for (int i = 0; i < n; ++i)
-        printf("%d%s", a[i], (i + 1 == n) ? "\n" : " ");
-
-    int index = binary_search(a, n, key);
-    printf(index >= 0 ? "Element %d found at index %d.\n" : "Element %d not found.\n", key, index);
+    int result = binarySearch(arr, 0, n - 1, target);
+    if (result != -1) {
+        printf("Element %d found at index %d\n", target, result);
+    } else {
+        printf("Element %d not found in the array\n", target);
+    }
 
     return 0;
 }
