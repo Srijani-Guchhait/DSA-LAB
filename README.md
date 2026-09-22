@@ -4,8 +4,6 @@
 
 ![Language](https://img.shields.io/badge/Language-C-00599C?style=for-the-badge&logo=c&logoColor=white)
 ![Focus](https://img.shields.io/badge/Focus-DSA-7B61FF?style=for-the-badge)
-![Lab](https://img.shields.io/badge/Type-Academic%20Lab-00B894?style=for-the-badge)
-![Build](https://img.shields.io/badge/Build-Makefile-FFB000?style=for-the-badge)
 
 ## ⚡ About
 
@@ -104,82 +102,10 @@ DSA_Lab/
 | 🥞 Stack | Push, pop, peek, overflow/underflow, display |
 | 🚦 Queue | Enqueue, dequeue, display |
 
-## 🛠️ Build & Run
-
-### Compile everything
-
-```bash
-make
-```
-
-All executables are generated under `build/` while preserving the source-tree structure.
-
-### Compile one program directly
-
-```bash
-gcc -std=c11 -Wall -Wextra -Wpedantic -O2 07-Sorting/15_bubble_sort.c -o bubble_sort
-./bubble_sort
-```
-
-### Clean generated binaries
-
-```bash
-make clean
-```
-
-### List all source files
-
-```bash
-make list
-```
-
-## ✅ Project Standards
-
-- Consistent numbered filenames
-- One logical topic per directory
-- No blank source files
-- Every program uses the `.c` extension
-- Sorting implementations are grouped under `07-Sorting/`
-- Searching implementations are grouped under `05-Searching/`
-- Compiler warnings are enabled by default
-- GitHub Actions builds every C program automatically
-
-## 🎯 Learning Objectives
-
-By completing these programs, you practice how to:
-
-1. Translate DSA theory into working C programs.
-2. Trace algorithm execution step by step.
-3. Compare searching and sorting techniques.
-4. Work with arrays, pointers, stacks, and queues.
-5. Apply recursion and memory-address formulas.
-6. Prepare for lab examinations, viva questions, and further algorithm study.
-
-## 🧪 Lab Workflow
-
-```text
-Understand the concept
-        ↓
-Read the C implementation
-        ↓
-Trace the algorithm
-        ↓
-Compile with warnings
-        ↓
-Run test cases
-        ↓
-Modify / experiment
-        ↓
-Understand the complexity
-```
-
-## 📌 Academic Note
-
-These programs are maintained for **DSA Lab practice and academic learning purposes**. The implementations are intentionally kept readable so the underlying logic is easy to inspect, modify, and experiment with.
-
 ## 👩‍💻 Author
 
 **Srijani Guchhait**  
+''Roll No- UG/04/CSEBS/2025/009''
 DSA Lab · C Programming
 
 ---
