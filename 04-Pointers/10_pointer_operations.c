@@ -2,19 +2,20 @@
 
 int main(void)
 {
-    int number = 50;
+    int n = 50;
     int value = 10;
-    int *pointer = &number;
+    int *pointer = &n;
     int **pointer_to_pointer = &pointer;
 
-    printf("Initial: number=%d, value=%d\n", number, value);
-    printf("*pointer = %d\n", *pointer);
+    printf("%d %d\n", n, value);
+    printf("%d\n", *pointer);
 
     *pointer = 25;
-    printf("After *pointer = 25: number=%d\n", number);
+    printf("%d %d\n", n, *pointer);
 
     **pointer_to_pointer = 50;
-    printf("After **pointer_to_pointer = 50: number=%d\n", number);
+    printf("%d %d %d\n", n, *pointer, **pointer_to_pointer);
 
     return 0;
 }
+
