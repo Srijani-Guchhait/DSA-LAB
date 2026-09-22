@@ -1,36 +1,29 @@
 #include <stdio.h>
-
-#define MAX_SIZE 100
-
-int main(void)
-{
-    int a[MAX_SIZE];
-    int n, pos, value;
-
-    printf("Enter number of elements: ");
-    if (scanf("%d", &n) != 1 || n < 0 || n >= MAX_SIZE)
-        return 1;
-
-    printf("Enter elements: ");
-    for (int i = 0; i < n; ++i)
-        if (scanf("%d", &a[i]) != 1) return 1;
-
-    printf("Enter insertion position (1-%d): ", n + 1);
-    if (scanf("%d", &pos) != 1 || pos < 1 || pos > n + 1)
-        return 1;
-
-    printf("Enter value to insert: ");
-    if (scanf("%d", &value) != 1)
-        return 1;
-
-    for (int i = n; i >= pos; --i)
-        a[i] = a[i - 1];
-    a[pos - 1] = value;
-    ++n;
-
+int insert (int arr[], int n, int element, int pos) {
+    for (int i = n; i >= pos; i--) {
+        arr[i] = arr[i - 1];
+    }
+    arr[pos - 1] = element;
+    n++;
+    return n;
+}
+int main () {
+    int arr[100], n, element, pos;
+    printf("Enter no. of elements: ");
+    scanf("%d", &n);
+    printf("Enter %d elements: ", n);
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+    }
+    printf("Enter elements to insert: ");
+    scanf("%d", &element);
+    printf("Enter position (1 to %d): ", n + 1);
+    scanf("%d", &pos);
+    n = insert(arr, n, element, pos);
     printf("Array after insertion: ");
-    for (int i = 0; i < n; ++i)
-        printf("%d%s", a[i], (i + 1 == n) ? "\n" : " ");
-
+    for (int i = 0; i < n; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
     return 0;
 }
