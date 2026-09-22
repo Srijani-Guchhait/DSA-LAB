@@ -1,31 +1,26 @@
 #include <stdio.h>
-
-#define MAX_SIZE 100
-
-int main(void)
-{
-    int a[MAX_SIZE];
-    int n, pos;
-
+int delete (int arr[], int n, int pos) {
+    for (int i = pos - 1; i < n - 1; i++) {
+        arr[i] = arr[i + 1];
+    }
+    n--;
+    return n;
+}
+int main () {
+    int arr[100], n, pos;
     printf("Enter number of elements: ");
-    if (scanf("%d", &n) != 1 || n <= 0 || n > MAX_SIZE)
-        return 1;
-
-    printf("Enter elements: ");
-    for (int i = 0; i < n; ++i)
-        if (scanf("%d", &a[i]) != 1) return 1;
-
-    printf("Enter deletion position (1-%d): ", n);
-    if (scanf("%d", &pos) != 1 || pos < 1 || pos > n)
-        return 1;
-
-    for (int i = pos - 1; i < n - 1; ++i)
-        a[i] = a[i + 1];
-    --n;
-
+    scanf("%d", &n);
+    printf("Enter %d elements: ", n);
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+    }
+    printf("Enter position to delete (1 to %d): ", n);
+    scanf("%d", &pos);
+    n = delete(arr, n, pos);
     printf("Array after deletion: ");
-    for (int i = 0; i < n; ++i)
-        printf("%d%s", a[i], (i + 1 == n) ? "\n" : " ");
-
+    for (int i = 0; i < n; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
     return 0;
 }
