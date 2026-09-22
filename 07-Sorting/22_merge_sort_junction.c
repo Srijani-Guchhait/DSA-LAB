@@ -1,29 +1,49 @@
 #include <stdio.h>
 
-static void merge(int a[], int left, int mid, int right)
-{
-    int temp[100];
-    int i = left, j = mid + 1, k = left;
-
-    while (i <= mid && j <= right)
-        temp[k++] = (a[i] <= a[j]) ? a[i++] : a[j++];
-    while (i <= mid) temp[k++] = a[i++];
-    while (j <= right) temp[k++] = a[j++];
-
-    for (i = left; i <= right; ++i) a[i] = temp[i];
+void merge(int arr[], int p, int q, int r) {
+    int n1 = q - p + 1;
+    int n2 = r - q;
+    int L[n1], M[n2];
+    
+    for (int i = 0; i < n1; i++) {
+        L[i] = arr[p + i];
+    }
+    for (int j = 0; j < n2; j++) {
+        M[j] = arr[q + 1 + j];
+    }
+    
+    int i = 0, j = 0, k = p;
+    while (i < n1 && j < n2) {
+        if (L[i] <= M[j]) {
+            arr[k] = L[i];
+            i++;
+        } else {
+            arr[k] = M[j];
+            j++;
+        }
+        k++;
+    }
+    
+    while (i < n1) {
+        arr[k] = L[i];
+        i++;
+        k++;
+    }
+    
+    while (j < n2) {
+        arr[k] = M[j];
+        j++;
+        k++;
+    }
 }
 
-int main(void)
-{
-    int a[] = {2, 5, 8, 3, 6, 9};
-    int n = (int)(sizeof(a) / sizeof(a[0]));
-
-    printf("Two sorted halves: ");
-    for (int i = 0; i < n; ++i) printf("%d%s", a[i], i + 1 == n ? "\n" : " ");
-
-    merge(a, 0, 2, 5);
-
-    printf("After merging the halves: ");
-    for (int i = 0; i < n; ++i) printf("%d%s", a[i], i + 1 == n ? "\n" : " ");
+int main() {
+    int arr[] = {3, 8, 9, 1, 5, 7};
+    merge(arr, 0, 2, 5);
+    
+    for (int i = 0; i < 6; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
     return 0;
 }
