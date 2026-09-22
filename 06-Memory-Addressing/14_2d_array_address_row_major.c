@@ -1,35 +1,32 @@
 #include <stdio.h>
 
-int main(void)
-{
-    unsigned long long base, width;
-    size_t columns;
-    long row, column, lower_row, lower_column;
+int main() {
+    int B, W, I, J, LR, LC, N;
 
-    printf("Enter base address (B): ");
-    if (scanf("%llx", &base) != 1) return 1;
+    printf("Enter the Base Address (B): ");
+    scanf("%d", &B);
 
-    printf("Enter data type size in bytes (w): ");
-    if (scanf("%llu", &width) != 1 || width == 0) return 1;
+    printf("Enter the size of the data type in bytes (W): ");
+    scanf("%d", &W);
 
-    printf("Enter row and column: ");
-    if (scanf("%ld %ld", &row, &column) != 2) return 1;
+    printf("Enter the target row to be found (I): ");
+    scanf("%d", &I);
 
-    printf("Enter lower row and lower column bounds: ");
-    if (scanf("%ld %ld", &lower_row, &lower_column) != 2) return 1;
+    printf("Enter the target column to be found (J): ");
+    scanf("%d", &J);
 
-    printf("Enter total number of columns (N): ");
-    if (scanf("%zu", &columns) != 1 || columns == 0) return 1;
+    printf("Enter the lowest index of Row/Lower Bound (LR): ");
+    scanf("%d", &LR);
 
-    if (row < lower_row || column < lower_column) {
-        fprintf(stderr, "Row/column is below the lower bound.\n");
-        return 1;
-    }
+    printf("Enter the lowest index of Column/Lower Bound (LC): ");
+    scanf("%d", &LC);
 
-    unsigned long long offset =
-        ((unsigned long long)(row - lower_row) * columns +
-         (unsigned long long)(column - lower_column)) * width;
+    printf("Enter the total Number of columns (N): ");
+    scanf("%d", &N);
 
-    printf("Row-major address of A[%ld][%ld] = 0x%llx\n", row, column, base + offset);
+    int address = B + W * ((I - LR) * N + (J - LC));
+
+    printf("\nThe calculated address for element A[%d][%d] is: %d\n", I, J, address);
+
     return 0;
 }
