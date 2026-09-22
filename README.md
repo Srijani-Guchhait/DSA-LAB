@@ -105,8 +105,7 @@ DSA_Lab/
 ## 👩‍💻 Author
 
 **Srijani Guchhait**  
-''Roll No- UG/04/CSEBS/2025/009''
-DSA Lab · C Programming
+```Roll No- UG/04/CSEBS/2025/009```
 
 ---
 
