@@ -1,25 +1,29 @@
 #include <stdio.h>
 
-static void selection_sort(int a[], int n)
-{
-    for (int i = 0; i < n - 1; ++i) {
-        int min_index = i;
-        for (int j = i + 1; j < n; ++j)
-            if (a[j] < a[min_index]) min_index = j;
-
-        int temp = a[i];
-        a[i] = a[min_index];
-        a[min_index] = temp;
+void SelectionSort(int array[], int size) {
+    for (int step = 0; step < size - 1; step++) {
+        int min_idx = step;
+        for (int i = step + 1; i < size; i++) {
+            if (array[i] < array[min_idx]) {
+                min_idx = i;
+            }
+        }
+        int temp = array[min_idx];
+        array[min_idx] = array[step];
+        array[step] = temp;
     }
 }
 
-int main(void)
-{
-    int a[] = {64, 34, 25, 12, 22, 11, 90};
-    int n = (int)(sizeof(a) / sizeof(a[0]));
-
-    selection_sort(a, n);
-    printf("Sorted array: ");
-    for (int i = 0; i < n; ++i) printf("%d%s", a[i], i + 1 == n ? "\n" : " ");
+int main() {
+    int data[] = {6, 4, 7, 8, 1, 9, 5};
+    int size = sizeof(data) / sizeof(data[0]);
+    
+    SelectionSort(data, size);
+    
+    printf("Sorted Array\n");
+    for (int i = 0; i < size; ++i) {
+        printf("%d ", data[i]);
+    }
+    printf("\n");
     return 0;
 }
